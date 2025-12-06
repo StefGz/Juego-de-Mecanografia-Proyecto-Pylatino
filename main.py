@@ -97,6 +97,7 @@ def seleccionar_dificultad():
     entrada_usuario = input("""
 ​👉​ Ingresa el número correspondiente a tu selección o presiona 
 cualquier tecla si quieres volver al menú principal: """)
+    
     print(" ")
 
     if not entrada_usuario or not entrada_usuario.isdigit():
@@ -131,6 +132,7 @@ def mostrar_bienvenida():
 #Muestra el menú principal del programa
 def mostrar_menu_principal():
     pausa()
+    
     menu_opciones = """ 
 🔹​ Por favor, selecciona una de las siguientes opciones:
 
@@ -148,6 +150,7 @@ def mostrar_menu_principal():
 #Muestra el menú de dificultad de la partida
 def mostrar_menu_dificultad():
     pausa()
+    
     menu_opciones = """ 
 🔹​ Selecciona la dificultad en la que deseas jugar:
 
@@ -156,6 +159,7 @@ def mostrar_menu_dificultad():
 3. Difícil (Frases más largas, mayúsculas, palabras con tildes y menos comunes)
 4. Avanzado (Frases con puntuación y temas específicos complejos)
 """ 
+    
     print(menu_opciones)
     dibujar_linea_separadora()
     pausa()
@@ -163,12 +167,14 @@ def mostrar_menu_dificultad():
 #Muestra el menú de modo de juego
 def mostrar_modos_juego():
     pausa()
+    
     menu_opciones = """ 
 🔹​ Selecciona el modo en que deseas jugar:
 
 1. Práctica (Solo palabras y frases sin temporizador)
 2. Competición (Contador de vidas y desafíos ocasionales)
 """
+    
     print(menu_opciones)
     dibujar_linea_separadora()
     pausa()
@@ -176,6 +182,7 @@ def mostrar_modos_juego():
 #Muestra las instrucciones del juego
 def mostrar_instru_juego():
     pausa()
+    
     instrucciones = """
 📃​ Instrucciones de juego 📃​
     
@@ -211,8 +218,10 @@ Lee siempre la línea siguiente para teclear la palabra completa.
 
     print(instrucciones)
     dibujar_linea_separadora()
+    
     input("""
 ​👉​​​​ Presiona cualquier tecla para regresar al menú principal: """)
+    
     print(" ")
     dibujar_linea_separadora()
     pausa()
@@ -225,12 +234,15 @@ Lee siempre la línea siguiente para teclear la palabra completa.
 #Crea una lista de temas que se usara en el juego, a partir de lo que ingrese el usuario
 def preparar_lista_temas():
     pausa()
+    
     temas = []
+    
     instruccion = """
 ​👉​​ Ingresa uno o varios temas para generar las palabras y 
 frases de la partida. Si quieres volver al menú principal, 
 presiona enter.
 """
+    
     print(instruccion)
     dibujar_linea_separadora()
 
@@ -261,8 +273,10 @@ Ingresa el tema de tu preferencia o presiona enter: """)
 #Solicita al usuario seleccionar una de las opciones del menú
 def seleccionar_opcion_menu():
     mostrar_menu_principal()
+    
     entrada_usuario = input("""
 ​👉​ Ingresa el número correspondiente a tu selección: """)
+    
     print(" ")
     dibujar_linea_separadora()
 
@@ -331,8 +345,10 @@ y volver al menú principal.
         ronda = call_gpt(prompt_generado)
         contenido_generado.append(ronda)
         print(f"​    ➡️​ {ronda}")
+        
         rta_usuario = input("""
 👉 Escribe la palabra o frase: """)    
+        
         if rta_usuario.lower() == "salir":
             break
 
@@ -361,16 +377,20 @@ def modo_competicion(prompt, lista_temas, contenido_generado):
 👉 Escribe "salir" en el momento en que desees terminar la partida 
 y volver al menú principal.
 """)
+    
     print(f"""
 ❤️​ Vidas iniciales: {vidas}
 """)
+    
     dibujar_linea_separadora()
 
     while vidas > 0:
         prompt_generado = generar_prompt(prompt, lista_temas, contenido_generado)
+        
         print("""
 💬​ Generando nueva palabra o frase...
 """)    
+        
         desafio = random.randint(1, 100)
         ronda = call_gpt(prompt_generado)
         contenido_generado.append(ronda)
@@ -378,8 +398,8 @@ y volver al menú principal.
         if desafio <= 20:
             frase_reversa = ronda[::-1]
             ronda = frase_reversa
-        
         print(f"​    ➡️​ {ronda}")
+        
         rta_usuario = input("""
 👉 Escribe la palabra o frase: """)   
  
